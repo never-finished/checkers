@@ -32,7 +32,17 @@ class CheckerBoard(Frame):
         init_data = {"x": 0, "y": 0, "item": None}
         final_coord = [0,0]
 
-
+#The large blocks of codes to create the board should be able to be replaced by two for loops instead of writing out each space 
+    #i will represent the row
+    for i in range 8:
+        #j will represent the column
+        for j in range 8:
+            if(i%2==0 && j%2==0):
+                re[i+j*8] = canvas.create_rectangle(40+50*j, 30+50*i, 90+50*j, 80+50*i, outline="tomato", fill="tomato", tags="red")     
+            else:
+                re[i+j*8] = canvas.create_rectangle(40+50*j, 30+50*i, 90+50*j, 80+50*i, outline="black", fill="black", tags="black")
+    
+    '''
         #---------------------
         #COLUMN 1
         #---------------------
@@ -128,7 +138,7 @@ class CheckerBoard(Frame):
         re62 = canvas.create_rectangle(390, 280, 440, 330, outline="tomato", fill="tomato", tags="red")
         bl63 = canvas.create_rectangle(390, 330, 440, 380, outline="black", fill="black", tags="black")
         re64 = canvas.create_rectangle(390, 380, 440, 430, outline="tomato", fill="tomato", tags="red")
-
+'''
 
         def OnTokenButtonPress(event):
             # record the item and its location
@@ -291,7 +301,17 @@ class CheckerBoard(Frame):
                 else:
                     canvas.move(init_data["item"],-1*del_x,-1*del_y)
         """
-
+        #the peices can be initialized with loops as well  THIS CODE IS LIKELY NOT CORRECT YET*************
+        for i in range 4:
+            #j will represent the column
+            for j in range 3:
+                if (j%2==0):       
+                    g[i+j*8] = canvas.create_oval(80+100*j, 30+100*i, 90+100*j, 80+100*i, outline="SlateGray4", fill="SlateGray4", tags="oval")    
+                    r[i+j*8] = canvas.create_oval(80+100*j, 30+100*i, 90+100*j, 80+100*i, outline="OrangeRed2", fill="OrangeRed2", tags="oval")
+                else:
+                     g[i+j*8] = canvas.create_oval(40+100*j, 30+100*i, 90+100*j, 80+100*i, outline="SlateGray4", fill="SlateGray4", tags="oval")    
+                    r[i+j*8] = canvas.create_oval(40+100*j, 30+100*i, 90+100*j, 80+100*i, outline="OrangeRed2", fill="OrangeRed2", tags="oval")
+        '''
         #------------------------
         #Initializing Gray pieces
         #------------------------
@@ -357,7 +377,8 @@ class CheckerBoard(Frame):
         r11 = canvas.create_oval(400,240,430,270, outline="OrangeRed2", fill="OrangeRed2", tags="oval")
         #390, 330, 440, 380
         r12 = canvas.create_oval(400,340,430,370, outline="OrangeRed2", fill="OrangeRed2", tags="oval")
-
+        '''
+       
         def PieceLogic(event):
             if self.is_moved == True:
                 self.is_moved = False
