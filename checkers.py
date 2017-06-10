@@ -1,6 +1,6 @@
-#!/usr/bin/python
-from Tkinter import *
-import tkMessageBox
+# !/usr/bin/python3
+from tkinter import *
+from tkinter import messagebox
 
 
 class CheckerBoard(Frame):
@@ -280,7 +280,6 @@ class CheckerBoard(Frame):
             cent_y = dims[1] + 25
             del_x = abs(x - cent_x)
             del_y = abs(y - cent_y)
-
             if x >= dims[0] and x < dims[2] and y >= dims[1] and y < dims[3]:
                 if x < cent_x and y < cent_y:
                     canvas.move(init_data["item"],del_x,del_y)
@@ -377,7 +376,7 @@ class CheckerBoard(Frame):
             if ((self.prev_itm > 64 and self.prev_itm < 77) and (cur_itm > 64 and cur_itm < 77)) \
                     and self.illegal != True:
                 same_colour = True
-                tkMessageBox.showinfo(title=None, message="Orange's Turn!")
+                messagebox.showinfo(title=None, message="Orange's Turn!")
                 if self.is_moved != True:
                     delta_x = init_data["x"] - event.x
                     delta_y = init_data["y"] - event.y
@@ -388,7 +387,7 @@ class CheckerBoard(Frame):
             elif ((self.prev_itm > 76 and self.prev_itm < 90) and (cur_itm > 76 and cur_itm < 90)) \
                     and self.illegal != True:
                 same_colour = True
-                tkMessageBox.showinfo(title=None, message="Gray's Turn!")
+                messagebox.showinfo(title=None, message="Gray's Turn!")
                 if self.is_moved != True:
                     delta_x = init_data["x"] - event.x
                     delta_y = init_data["y"] - event.y
@@ -400,15 +399,15 @@ class CheckerBoard(Frame):
                 if item == item_below and len(itm_tuple) == 2 and row_diff > 0 and col_diff > 0:
                     sq_dims = RectDims(final_coord)
                     self.moves += 1
-                    print "Moves: ", self.moves
+                    print ("Moves: ", self.moves)
                     if final_coord[0] == 1 and cur_itm > 76 and same_colour != True:
                         canvas.itemconfig(cur_itm,fill="OrangeRed4",outline="OrangeRed4")
                         self.ocrowns.append(cur_itm)
-                        print "self.ocrowns: ", self.ocrowns
+                        print ("self.ocrowns: ", self.ocrowns)
                     elif final_coord[0] == 8 and cur_itm < 77 and same_colour != True:
                         canvas.itemconfig(cur_itm,fill="gray25",outline="gray25")
                         self.gcrowns.append(cur_itm)
-                        print "self.gcrowns: ", self.gcrowns
+                        print ("self.gcrowns: ", self.gcrowns)
 
                     gcrn_itm = 0
                     for i in self.gcrowns:
@@ -416,8 +415,8 @@ class CheckerBoard(Frame):
                             gcrn_itm = i
                             break
 
-                    print
-                    print "gcrn_itm: ", gcrn_itm
+                    print()
+                    print ("gcrn_itm: ", gcrn_itm)
 
                     ocrn_itm = 0
                     for i in self.ocrowns:
@@ -425,8 +424,8 @@ class CheckerBoard(Frame):
                             ocrn_itm = i
                             break
 
-                    print
-                    print "ocrn_itm: ", ocrn_itm
+                    print()
+                    print ("ocrn_itm: ", ocrn_itm)
 
                     if col_diff == 2 and row_diff == 2 and self.moves > 1:
                         dpiece_coord = []
@@ -491,21 +490,21 @@ class CheckerBoard(Frame):
                                 canvas.move(init_data["item"],delta_x,delta_y)
                                 break
                             else:
-                                print "Dead piece:", dpiece
+                                print ("Dead piece:", dpiece)
                                 if (cur_itm < 77 and dpiece[0] > 76) or (cur_itm > 76 and dpiece[0] < 77):
                                     canvas.delete(dpiece)
                                     if dpiece[0] < 77:
                                         self.gnum -= 1
-                                        print "gnum: ", self.gnum
+                                        print ("gnum: ", self.gnum)
                                     else:
                                         self.rnum -= 1
-                                        print "rnum: ", self.rnum
+                                        print ("rnum: ", self.rnum)
 
                                     if self.gnum == 0 or self.rnum == 0:
                                         if self.gnum > self.rnum:
-                                            tkMessageBox.showinfo(title=None,message="Game Over! Gray Wins!")
+                                            messagebox.showinfo(title=None,message="Game Over! Gray Wins!")
                                         else:
-                                            tkMessageBox.showinfo(title=None,message="Game Over! Orange Wins!")
+                                            messagebox.showinfo(title=None,message="Game Over! Orange Wins!")
                                 else:
                                     delta_x = init_data["x"] - event.x
                                     delta_y = init_data["y"] - event.y
